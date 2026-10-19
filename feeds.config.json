@@ -1,0 +1,30 @@
+{
+  "feeds": [
+    { "source": "The Atlantic", "section": "All Stories", "url": "https://www.theatlantic.com/feed/all/" },
+    { "source": "The Atlantic", "section": "Best of The Atlantic", "url": "https://www.theatlantic.com/feed/best-of/" },
+    { "source": "The Atlantic", "section": "Politics", "url": "https://www.theatlantic.com/feed/channel/politics/" },
+    { "source": "The Atlantic", "section": "Technology", "url": "https://www.theatlantic.com/feed/channel/technology/" },
+    { "source": "The Atlantic", "section": "International", "url": "https://www.theatlantic.com/feed/channel/international/" },
+
+    { "source": "The Economist", "section": "Latest Stories", "url": "https://www.economist.com/latest/rss.xml" },
+    { "source": "The Economist", "section": "The World This Week", "url": "https://www.economist.com/the-world-this-week/rss.xml" },
+    { "source": "The Economist", "section": "Finance & Economics", "url": "https://www.economist.com/finance-and-economics/rss.xml" },
+    { "source": "The Economist", "section": "Science & Technology", "url": "https://www.economist.com/science-and-technology/rss.xml" },
+
+    { "source": "The New York Times", "section": "Home Page", "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" },
+    { "source": "The New York Times", "section": "World", "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml" },
+    { "source": "The New York Times", "section": "Business", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml" },
+    { "source": "The New York Times", "section": "Technology", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml" },
+    { "source": "The New York Times", "section": "Opinion", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml" },
+
+    { "source": "The Wall Street Journal", "section": "World News", "url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews" },
+    { "source": "The Wall Street Journal", "section": "Markets", "url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain" },
+    { "source": "The Wall Street Journal", "section": "Technology", "url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD" },
+    { "source": "The Wall Street Journal", "section": "Opinion", "url": "https://feeds.content.dowjones.io/public/rss/RSSOpinion" },
+
+    { "source": "The Washington Post", "section": "Homepage", "url": "https://feeds.washingtonpost.com/rss/homepage" },
+    { "source": "The Washington Post", "section": "World", "url": "https://feeds.washingtonpost.com/rss/world" },
+    { "source": "The Washington Post", "section": "Business", "url": "https://feeds.washingtonpost.com/rss/business" },
+    { "source": "The Washington Post", "section": "Politics", "url": "https://feeds.washingtonpost.com/rss/politics" }
+  ]
+}
