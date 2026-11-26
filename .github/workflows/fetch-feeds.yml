@@ -21,7 +21,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install feedparser
+        run: pip install feedparser tzdata
 
       - name: Fetch feeds
         run: python scripts/fetch_feeds.py
@@ -30,7 +30,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_SCANS_PARENT_PAGE_ID: ${{ secrets.NOTION_SCANS_PARENT_PAGE_ID }}
         run: python scripts/sync_notion.py
 
       - name: Commit and push feeds.json and notion_synced.json if changed
