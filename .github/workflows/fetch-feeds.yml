@@ -1,0 +1,46 @@
+name: Fetch feeds and sync to Notion
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install feedparser
+
+      - name: Fetch feeds
+        run: python scripts/fetch_feeds.py
+
+      - name: Sync new items to Notion
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: python scripts/sync_notion.py
+
+      - name: Commit and push feeds.json and notion_synced.json if changed
+        run: |
+          if [ -n "$(git status --porcelain feeds.json notion_synced.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add feeds.json notion_synced.json
+            git commit -m "Update feeds.json and notion_synced.json [skip ci]"
+            git push
+          else
+            echo "No changes to commit; skipping."
+          fi
