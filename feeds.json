@@ -1,6 +1,36 @@
 {
-  "generatedAt": "2026-11-26T23:40:57.173173+00:00",
+  "generatedAt": "2026-11-27T00:41:00.789319+00:00",
   "items": [
+    {
+      "id": "b8a1cdce7e31e86e",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Gold Stabilizes But Faces Fragile Recovery",
+      "summary": "Gold prices were little changed. A hawkish Federal Reserve sets a high bar for a durable gold recovery, StoneX said.",
+      "link": "https://www.wsj.com/finance/commodities-futures/gold-fortunes-tied-to-stocks-in-near-term-42ce98be?mod=rss_markets_main",
+      "published": "2026-11-27T00:25:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
+    {
+      "id": "91b7097890b78351",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Nikkei Rises 0.4%, Led by Banks, Trading Houses",
+      "summary": "Japanese stocks were higher in early trade as recent selloffs in artificial intelligence-related stocks ease.",
+      "link": "https://www.wsj.com/finance/stocks/nikkei-rises-0-4-led-by-banks-trading-houses-7e23720e?mod=rss_markets_main",
+      "published": "2026-11-27T00:18:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
+    {
+      "id": "077b0a44636a8082",
+      "source": "The New York Times",
+      "section": "Home Page",
+      "title": "A City Fears the Loss of Its Pier After a Section Collapsed Into the Sea",
+      "summary": "The famed pier in Pacifica, Calif., had long been crumbling. This week, a portion of it succumbed to fierce waves and toppled into the sea.",
+      "link": "https://www.nytimes.com/2026/11/26/us/pacifica-pier-collapse-el-nino-king-tides.html",
+      "published": "2026-11-26T23:40:44+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+    },
     {
       "id": "7d58b3eba5adf246",
       "source": "The New York Times",
@@ -1378,7 +1408,7 @@
       "title": "Was Japan Prime Minister Takaichi Snubbed at China’s Big Summit?",
       "summary": "Images show the differences between the welcomes afforded to Sanae Takaichi and other world leaders in Shenzhen, as some officials in Japan cry foul.",
       "link": "https://www.nytimes.com/2026/11/26/world/asia/japan-china-takaichi-snubbed.html",
-      "published": "2026-11-26T09:14:29+00:00",
+      "published": "2026-11-26T09:14:30+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
     },
     {
@@ -5610,16 +5640,6 @@
       "link": "https://www.theatlantic.com/technology/2026/11/elon-musk-maga-pivot/689517/?utm_source=feed",
       "published": "2026-11-20T00:51:00+00:00",
       "source_url": "https://www.theatlantic.com/feed/channel/technology/"
-    },
-    {
-      "id": "017c0c268c316d4e",
-      "source": "The Wall Street Journal",
-      "section": "Markets",
-      "title": "California Attorney General Issues Investigative Subpoena to Nvidia",
-      "summary": "Rob Bonta opened a probe into the embattled chip maker to determine whether the company misled investors.",
-      "link": "https://www.wsj.com/tech/california-attorney-general-issues-investigative-subpoena-to-nvidia-097cea9e?mod=rss_markets_main",
-      "published": "2026-11-20T00:01:00+00:00",
-      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
     }
   ]
 }
