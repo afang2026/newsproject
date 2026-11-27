@@ -1,6 +1,16 @@
 {
-  "generatedAt": "2026-11-27T01:07:36.880730+00:00",
+  "generatedAt": "2026-11-27T01:23:00.677846+00:00",
   "items": [
+    {
+      "id": "f25d70c6284e3cfc",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Australian Dollar’s Weakness to Extend Into 2027",
+      "summary": "The Australian dollar’s recent weakness looks set to extend into 2027, NAB said.",
+      "link": "https://www.wsj.com/finance/currencies/australia-dollars-weakness-to-extend-into-2027-0354864b?mod=rss_markets_main",
+      "published": "2026-11-27T01:17:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
     {
       "id": "077b0a44636a8082",
       "source": "The New York Times",
@@ -100,6 +110,16 @@
       "link": "https://www.nytimes.com/2026/11/26/opinion/electricity-batteries-commodity-economy.html",
       "published": "2026-11-26T21:20:37+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml"
+    },
+    {
+      "id": "44da2f067e0695b5",
+      "source": "The New York Times",
+      "section": "Home Page",
+      "title": "Thanksgiving Is Back on the Menu for Francesca Hong, the Failed Wisconsin Governor Candidate",
+      "summary": "Francesca Hong, who took heat over a social media post condemning the holiday during her run for the Democratic nomination, now has regrets — and is laughing it all off.",
+      "link": "https://www.nytimes.com/2026/11/26/us/politics/thanksgiving-wisconsin-governor-francesca-hong.html",
+      "published": "2026-11-26T21:15:36+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
     },
     {
       "id": "77d7c052d12b229a",
