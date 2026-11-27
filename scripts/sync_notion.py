@@ -215,6 +215,12 @@ def ask_claude(prompt, max_tokens, label="request"):
         "model": ANTHROPIC_MODEL,
         "max_tokens": max_tokens,
         "messages": [{"role": "user", "content": prompt}],
+        # Haiku 5.5 defaults to "medium" extended-thinking effort, which can
+        # burn the entire max_tokens budget on invisible reasoning before
+        # writing anything visible (confirmed live: stop_reason="max_tokens"
+        # with block_types=["thinking"] and zero text, on a one-sentence
+        # task). None of these prompts need chain-of-thought, so turn it off.
+        "thinking": {"type": "disabled"},
     }
     data = http_json(
         "https://api.anthropic.com/v1/messages",
@@ -251,6 +257,17 @@ def ask_claude_for_take(item):
     return ask_claude(prompt, max_tokens=200, label=f"take ({item.get('title', '')[:40]!r})")
 
 
+#   Haiku 5.5 is $0.10/M input + $0.50/M output tokens (under 100K-token
+#   prompts). Even at the ceiling below (4000 output tokens) plus ~150
+#   one-line-take input tokens each from up to MAX_ITEMS_PER_RUN articles,
+#   one run's total cost is well under a cent - nowhere near $1. The ceiling
+#   exists so a pathological number of articles can't runaway the request,
+#   not because cost is actually at risk.
+EXEC_SUMMARY_BASE_TOKENS = 500
+EXEC_SUMMARY_TOKENS_PER_ITEM = 15
+EXEC_SUMMARY_MAX_TOKENS_CEILING = 4000
+
+
 def ask_claude_for_executive_summary(processed):
     lines = [
         f"- [{it.get('source', '')}] {it.get('title', '')}: {take}"
@@ -268,7 +285,11 @@ def ask_claude_for_executive_summary(processed):
         "Be specific - reference actual story topics, not generic phrases.\n\n"
         + "\n".join(lines)
     )
-    return ask_claude(prompt, max_tokens=1500, label="executive summary")
+    max_tokens = min(
+        EXEC_SUMMARY_MAX_TOKENS_CEILING,
+        EXEC_SUMMARY_BASE_TOKENS + EXEC_SUMMARY_TOKENS_PER_ITEM * len(lines),
+    )
+    return ask_claude(prompt, max_tokens=max_tokens, label="executive summary")
 
 
 def chicago_scan_title(now_utc):
