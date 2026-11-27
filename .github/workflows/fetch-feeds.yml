@@ -2,7 +2,7 @@ name: Fetch feeds and sync to Notion
 
 on:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 0,12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,13 +33,13 @@ jobs:
           NOTION_SCANS_PARENT_PAGE_ID: ${{ secrets.NOTION_SCANS_PARENT_PAGE_ID }}
         run: python scripts/sync_notion.py
 
-      - name: Commit and push feeds.json and notion_synced.json if changed
+      - name: Commit and push generated state if changed
         run: |
-          if [ -n "$(git status --porcelain feeds.json notion_synced.json)" ]; then
+          if [ -n "$(git status --porcelain feeds.json notion_synced.json notion_last_scan_titles.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add feeds.json notion_synced.json
-            git commit -m "Update feeds.json and notion_synced.json [skip ci]"
+            git add feeds.json notion_synced.json notion_last_scan_titles.json
+            git commit -m "Update feed sync state [skip ci]"
             git push
           else
             echo "No changes to commit; skipping."
