@@ -175,6 +175,18 @@ def classify_against_last_scan(title, last_titles_normalized):
     return "none", None
 
 
+def describe_error(e):
+    """urllib's default str(HTTPError) is just 'HTTP Error 400: Bad Request'
+    with no detail; Notion's actual response body explains what's wrong."""
+    if isinstance(e, urllib.error.HTTPError):
+        try:
+            body = e.read().decode("utf-8", errors="replace")
+        except Exception:
+            body = ""
+        return f"{e} - {body[:500]}"
+    return str(e)
+
+
 def http_json(url, method="GET", headers=None, payload=None, timeout=30):
     data = json.dumps(payload).encode("utf-8") if payload is not None else None
     req = urllib.request.Request(url, data=data, method=method, headers=headers or {})
@@ -290,27 +302,33 @@ def append_summary_blocks(page_id, summary_text):
 
 
 def create_scan_database(scan_page_id):
+    # 2025-09-03 API: a NEW database's custom property schema must be nested
+    # under initial_data_source.properties, NOT a top-level "properties" key
+    # - a top-level "properties" is silently ignored, leaving Notion's bare
+    # default single "Name" title column (this bit us once already).
     source_options = [{"name": name, "color": color} for name, color in SOURCE_COLORS.items()]
     payload = {
         "parent": {"type": "page_id", "page_id": scan_page_id},
         "title": [{"type": "text", "text": {"content": "Articles"}}],
-        "properties": {
-            "Title": {"title": {}},
-            "Source": {"select": {"options": source_options}},
-            "Section": {"rich_text": {}},
-            "Link": {"url": {}},
-            "Published": {"date": {}},
-            "AI Take": {"rich_text": {}},
-            "Status": {
-                "select": {
-                    "options": [
-                        {"name": "New", "color": "blue"},
-                        {"name": "Read", "color": "green"},
-                        {"name": "Skipped", "color": "gray"},
-                    ]
-                }
-            },
-            "RSS ID": {"rich_text": {}},
+        "initial_data_source": {
+            "properties": {
+                "Title": {"title": {}},
+                "Source": {"select": {"options": source_options}},
+                "Section": {"rich_text": {}},
+                "Link": {"url": {}},
+                "Published": {"date": {}},
+                "AI Take": {"rich_text": {}},
+                "Status": {
+                    "select": {
+                        "options": [
+                            {"name": "New", "color": "blue"},
+                            {"name": "Read", "color": "green"},
+                            {"name": "Skipped", "color": "gray"},
+                        ]
+                    }
+                },
+                "RSS ID": {"rich_text": {}},
+            }
         },
     }
     data = http_json(
@@ -393,7 +411,7 @@ def main():
         try:
             ai_take = ask_claude_for_take(item)
         except urllib.error.URLError as e:
-            print(f"WARN: Claude summary failed for {label}: {e}")
+            print(f"WARN: Claude summary failed for {label}: {describe_error(e)}")
             continue
 
         display_title = f"[SIMILAR] {title} | {matched}" if verdict == "similar" else title
@@ -410,7 +428,7 @@ def main():
     try:
         exec_summary = ask_claude_for_executive_summary([(it, take) for it, take, _ in processed])
     except urllib.error.URLError as e:
-        print(f"WARN: executive summary failed, continuing without one: {e}")
+        print(f"WARN: executive summary failed, continuing without one: {describe_error(e)}")
         exec_summary = ""
 
     scan_title = chicago_scan_title(now)
@@ -419,7 +437,7 @@ def main():
         append_summary_blocks(scan_page_id, exec_summary)
         data_source_id = create_scan_database(scan_page_id)
     except urllib.error.URLError as e:
-        fatal(f"could not create scan page/database in Notion: {e}")
+        fatal(f"could not create scan page/database in Notion: {describe_error(e)}")
 
     synced = 0
     new_last_scan_titles = []
@@ -428,7 +446,7 @@ def main():
         try:
             create_notion_row(data_source_id, item, ai_take, display_title)
         except urllib.error.URLError as e:
-            print(f"WARN: Notion row write failed for {label}: {e}")
+            print(f"WARN: Notion row write failed for {label}: {describe_error(e)}")
             continue
         state[item["id"]] = item.get("published", now.isoformat())
         new_last_scan_titles.append(item.get("title", ""))
