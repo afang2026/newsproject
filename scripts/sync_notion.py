@@ -210,7 +210,7 @@ def anthropic_headers():
     }
 
 
-def ask_claude(prompt, max_tokens):
+def ask_claude(prompt, max_tokens, label="request"):
     payload = {
         "model": ANTHROPIC_MODEL,
         "max_tokens": max_tokens,
@@ -223,7 +223,18 @@ def ask_claude(prompt, max_tokens):
         payload=payload,
     )
     blocks = data.get("content") or []
-    return "".join(b.get("text", "") for b in blocks if b.get("type") == "text").strip()
+    text = "".join(b.get("text", "") for b in blocks if b.get("type") == "text").strip()
+    if not text:
+        # No HTTP error here - the call succeeded but produced no visible
+        # text (e.g. truncated by max_tokens before any text block, or a
+        # content-block shape we don't expect). Log enough to diagnose
+        # instead of silently returning "" with no trace of why.
+        print(
+            f"WARN: Claude {label} returned no text "
+            f"(stop_reason={data.get('stop_reason')!r}, "
+            f"block_types={[b.get('type') for b in blocks]!r})"
+        )
+    return text
 
 
 def ask_claude_for_take(item):
@@ -237,7 +248,7 @@ def ask_claude_for_take(item):
         f"Title: {item.get('title', '')}\n"
         f"Summary: {item.get('summary', '')}\n"
     )
-    return ask_claude(prompt, max_tokens=100)
+    return ask_claude(prompt, max_tokens=200, label=f"take ({item.get('title', '')[:40]!r})")
 
 
 def ask_claude_for_executive_summary(processed):
@@ -250,13 +261,14 @@ def ask_claude_for_executive_summary(processed):
         "You are producing a short executive summary for a personal "
         "news-reading dashboard. Below are articles from one scan, each "
         "with source, title, and a one-line take. Write a synthesized "
-        "executive summary (3-5 sentences of prose, no markdown headers) "
-        "that groups related stories by theme, calls out what's most worth "
-        "prioritizing and why, and can note what's safe to skip. Be "
-        "specific - reference actual story topics, not generic phrases.\n\n"
+        "executive summary (a few sentences to a short paragraph, more if "
+        "there are many unrelated stories to group - prose, no markdown "
+        "headers) that groups related stories by theme, calls out what's "
+        "most worth prioritizing and why, and can note what's safe to skip. "
+        "Be specific - reference actual story topics, not generic phrases.\n\n"
         + "\n".join(lines)
     )
-    return ask_claude(prompt, max_tokens=400)
+    return ask_claude(prompt, max_tokens=1500, label="executive summary")
 
 
 def chicago_scan_title(now_utc):
