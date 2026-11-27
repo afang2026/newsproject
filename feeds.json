@@ -1,6 +1,26 @@
 {
-  "generatedAt": "2026-11-27T00:41:00.789319+00:00",
+  "generatedAt": "2026-11-27T01:07:36.880730+00:00",
   "items": [
+    {
+      "id": "077b0a44636a8082",
+      "source": "The New York Times",
+      "section": "Home Page",
+      "title": "A City Fears the Loss of Its Pier After a Section Collapsed Into the Sea",
+      "summary": "The famed pier in Pacifica, Calif., had long been crumbling. This week, a portion of it succumbed to fierce waves and toppled into the sea.",
+      "link": "https://www.nytimes.com/2026/11/26/us/pacifica-pier-collapse-el-nino-king-tides.html",
+      "published": "2026-11-27T00:46:52+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+    },
+    {
+      "id": "eb3c96ec7511ffe5",
+      "source": "The New York Times",
+      "section": "Home Page",
+      "title": "After the Iowa Detonation, a Family Gathered for an Unusual Thanksgiving",
+      "summary": "A family came together at a farmhouse in southeast Iowa the day after the explosion at an ammunition plant. It felt as if a storm had passed.",
+      "link": "https://www.nytimes.com/2026/11/26/us/iowa-detonation-family-thanksgiving.html",
+      "published": "2026-11-27T00:33:25+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+    },
     {
       "id": "b8a1cdce7e31e86e",
       "source": "The Wall Street Journal",
@@ -20,16 +40,6 @@
       "link": "https://www.wsj.com/finance/stocks/nikkei-rises-0-4-led-by-banks-trading-houses-7e23720e?mod=rss_markets_main",
       "published": "2026-11-27T00:18:00+00:00",
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
-    },
-    {
-      "id": "077b0a44636a8082",
-      "source": "The New York Times",
-      "section": "Home Page",
-      "title": "A City Fears the Loss of Its Pier After a Section Collapsed Into the Sea",
-      "summary": "The famed pier in Pacifica, Calif., had long been crumbling. This week, a portion of it succumbed to fierce waves and toppled into the sea.",
-      "link": "https://www.nytimes.com/2026/11/26/us/pacifica-pier-collapse-el-nino-king-tides.html",
-      "published": "2026-11-26T23:40:44+00:00",
-      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
     },
     {
       "id": "7d58b3eba5adf246",
@@ -5630,16 +5640,6 @@
       "link": "https://www.wsj.com/finance/regulation/this-ex-sheriff-was-on-the-beat-when-mark-walter-loaded-insurers-with-insider-deals-dbfd45d1?mod=rss_markets_main",
       "published": "2026-11-20T04:09:00+00:00",
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
-    },
-    {
-      "id": "ac68dd9d40c5b72e",
-      "source": "The Atlantic",
-      "section": "Technology",
-      "title": "‘I’m Not MAGA,’ Says Man in MAGA Hat",
-      "summary": "Elon Musk would like to pretend that the past two years didn’t happen.",
-      "link": "https://www.theatlantic.com/technology/2026/11/elon-musk-maga-pivot/689517/?utm_source=feed",
-      "published": "2026-11-20T00:51:00+00:00",
-      "source_url": "https://www.theatlantic.com/feed/channel/technology/"
     }
   ]
 }
