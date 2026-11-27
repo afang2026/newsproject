@@ -1,6 +1,76 @@
 {
-  "generatedAt": "2026-11-27T02:14:04.564154+00:00",
+  "generatedAt": "2026-11-27T03:51:14.669402+00:00",
   "items": [
+    {
+      "id": "cad4ceb6975fbc00",
+      "source": "The New York Times",
+      "section": "Business",
+      "title": "Photos: Macy’s Thanksgiving Day Parade History and Wacky Moments",
+      "summary": "It isn’t always easy to keep New York City’s Thanksgiving parade on track. Here’s a look back at notable moments and mishaps.",
+      "link": "https://www.nytimes.com/2026/11/26/nyregion/macys-thanksgiving-parade-history-timeline.html",
+      "published": "2026-11-27T03:39:46+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
+    },
+    {
+      "id": "f25d70c6284e3cfc",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Korean Won Poised to Strengthen Against Dollar in 2027",
+      "summary": "The South Korean won appears poised to strengthen further against the dollar in 2027, said ING.",
+      "link": "https://www.wsj.com/finance/currencies/australia-dollars-weakness-to-extend-into-2027-0354864b?mod=rss_markets_main",
+      "published": "2026-11-27T03:01:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
+    {
+      "id": "cab3eda25b2cf6c9",
+      "source": "The Wall Street Journal",
+      "section": "World News",
+      "title": "No Homes to Rent, No Way to Evict: Inside Spain’s Housing Crisis",
+      "summary": "The dysfunctional market for homes has become a politically explosive issue at the ballot box—and a warning for everyone else.",
+      "link": "https://www.wsj.com/world/europe/spain-housing-crisis-d09dc62f?mod=rss_worldnews",
+      "published": "2026-11-27T03:00:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+    },
+    {
+      "id": "4cb414c3b5a7488e",
+      "source": "The Wall Street Journal",
+      "section": "World News",
+      "title": "The AI Boom Looks Alive and Well in Asia",
+      "summary": "Stocks are having a wild ride thanks to the Nvidia affair, but AI-linked exports and investment are still driving growth—for now.",
+      "link": "https://www.wsj.com/tech/ai/the-ai-boom-looks-alive-and-well-in-asia-59841697?mod=rss_worldnews",
+      "published": "2026-11-27T03:00:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+    },
+    {
+      "id": "73ba92bcafe8b59f",
+      "source": "The New York Times",
+      "section": "Business",
+      "title": "Nvidia Halts Sales to Southeast Asia as U.S. Tightens China Restrictions",
+      "summary": "The shipping halt, which hit four countries, follows a new U.S. rule that would require licenses for companies in the countries to buy advanced A.I. chips.",
+      "link": "https://www.nytimes.com/2026/11/26/business/nvidia-southeast-asia-sales.html",
+      "published": "2026-11-27T02:45:41+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
+    },
+    {
+      "id": "bc2f4b2e58f3fb01",
+      "source": "The Wall Street Journal",
+      "section": "World News",
+      "title": "Short-Term JGB Yields Rise on Elevated Tokyo Inflation Data",
+      "summary": "Short-term Japanese government bond yields rose as elevated Tokyo inflation data boosted expectations for the Bank of Japan to increase rates.",
+      "link": "https://www.wsj.com/finance/investing/short-term-jgb-yields-rise-on-elevated-tokyo-inflation-data-713a900b?mod=rss_worldnews",
+      "published": "2026-11-27T02:16:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+    },
+    {
+      "id": "59246937770d0644",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Asian Markets Mostly Higher as Sentiment Stabilizes",
+      "summary": "Asian markets tracked gains in U.S. stock futures as sentiment around artificial intelligence stabilized.",
+      "link": "https://www.wsj.com/finance/asian-markets-mostly-higher-as-sentiment-stabilizes-8f998c4d?mod=rss_markets_main",
+      "published": "2026-11-27T02:13:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
     {
       "id": "7f9ca02e1b37c727",
       "source": "The Wall Street Journal",
@@ -10,16 +80,6 @@
       "link": "https://www.wsj.com/tech/ai/giving-pledge-anthropic-charity-effective-altruism-fef947b2?mod=rss_Technology",
       "published": "2026-11-27T02:00:00+00:00",
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD"
-    },
-    {
-      "id": "f25d70c6284e3cfc",
-      "source": "The Wall Street Journal",
-      "section": "Markets",
-      "title": "Risk of Yen Weakening Against Dollar Appears Limited",
-      "summary": "Intervention risk should cap the dollar near 160 yen, while firm underlying inflation keeps a December hike by the Bank of Japan in play, OCBC said.",
-      "link": "https://www.wsj.com/finance/currencies/australia-dollars-weakness-to-extend-into-2027-0354864b?mod=rss_markets_main",
-      "published": "2026-11-27T01:51:00+00:00",
-      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
     },
     {
       "id": "5920506cbb72a3b4",
@@ -702,16 +762,6 @@
       "source_url": "https://www.theatlantic.com/feed/all/"
     },
     {
-      "id": "cad4ceb6975fbc00",
-      "source": "The New York Times",
-      "section": "Business",
-      "title": "Photos: Macy’s Thanksgiving Day Parade History and Wacky Moments",
-      "summary": "It isn’t always easy to keep New York City’s Thanksgiving parade on track. Here’s a look back at notable moments and mishaps.",
-      "link": "https://www.nytimes.com/2026/11/26/nyregion/macys-thanksgiving-parade-history-timeline.html",
-      "published": "2026-11-26T13:45:53+00:00",
-      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
-    },
-    {
       "id": "1e41eae3bae6257e",
       "source": "The Economist",
       "section": "Latest Stories",
@@ -1132,16 +1182,6 @@
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
     },
     {
-      "id": "73ba92bcafe8b59f",
-      "source": "The New York Times",
-      "section": "Business",
-      "title": "Nvidia Halts Sales to Southeast Asia as U.S. Tightens China Restrictions",
-      "summary": "The shipping halt, which hit four countries, follows a new U.S. rule that would require licenses for companies in the countries to buy advanced A.I. chips.",
-      "link": "https://www.nytimes.com/2026/11/26/business/nvidia-southeast-asia-sales.html",
-      "published": "2026-11-26T12:04:01+00:00",
-      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"
-    },
-    {
       "id": "ef07c06342b3f266",
       "source": "The Wall Street Journal",
       "section": "Markets",
@@ -1498,7 +1538,7 @@
       "title": "Hong Kong Grieves Fire Victims Under Watchful Eye of Authorities",
       "summary": "The city’s residents quietly mourned the 168 lives lost in a high-rise complex blaze a year ago, as officials warned against using the disaster to sow division.",
       "link": "https://www.nytimes.com/2026/11/26/world/asia/hong-kong-fire-wang-fuk-court-anniversary.html",
-      "published": "2026-11-26T09:06:03+00:00",
+      "published": "2026-11-26T09:06:04+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
     },
     {
