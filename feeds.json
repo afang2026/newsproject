@@ -1,6 +1,56 @@
 {
-  "generatedAt": "2026-11-27T01:30:58.609335+00:00",
+  "generatedAt": "2026-11-27T02:14:04.564154+00:00",
   "items": [
+    {
+      "id": "7f9ca02e1b37c727",
+      "source": "The Wall Street Journal",
+      "section": "Technology",
+      "title": "They Pledged to Give Away 10% of Their Income. Now They’re AI Billionaires.",
+      "summary": "A promise that began with 23 people has become a global movement with influence across the AI industry—especially Anthropic.",
+      "link": "https://www.wsj.com/tech/ai/giving-pledge-anthropic-charity-effective-altruism-fef947b2?mod=rss_Technology",
+      "published": "2026-11-27T02:00:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD"
+    },
+    {
+      "id": "f25d70c6284e3cfc",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Risk of Yen Weakening Against Dollar Appears Limited",
+      "summary": "Intervention risk should cap the dollar near 160 yen, while firm underlying inflation keeps a December hike by the Bank of Japan in play, OCBC said.",
+      "link": "https://www.wsj.com/finance/currencies/australia-dollars-weakness-to-extend-into-2027-0354864b?mod=rss_markets_main",
+      "published": "2026-11-27T01:51:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
+    {
+      "id": "5920506cbb72a3b4",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "Oil Mixed as Markets Track Mideast Developments, U.S. Inventories",
+      "summary": "Oil prices were mixed in early Asian trade. Rising attacks on energy infrastructure across the Middle East have raised concerns of further supply disruptions, ANZ said.",
+      "link": "https://www.wsj.com/finance/commodities-futures/oil-mixed-as-markets-track-mideast-developments-u-s-inventories-6daf3fb1?mod=rss_markets_main",
+      "published": "2026-11-27T01:48:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
+    {
+      "id": "d13b75936fd60e24",
+      "source": "The Wall Street Journal",
+      "section": "World News",
+      "title": "New Zealand Election Ends in Deadlock, Turns Outsider Into Kingmaker",
+      "summary": "Prime Minister Christopher Luxon needs support of newcomer Qiulae Wong’s Opportunity Party to form majority government.",
+      "link": "https://www.wsj.com/world/asia/new-zealand-election-ends-in-deadlock-turns-outsider-into-kingmaker-b1708432?mod=rss_worldnews",
+      "published": "2026-11-27T01:46:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews"
+    },
+    {
+      "id": "8aca47080f436bf2",
+      "source": "The New York Times",
+      "section": "Opinion",
+      "title": "Abandon All Hope, Ye Who Enter Airports",
+      "summary": "Dante’s “Inferno” depicted a hell meant to punish sinners. Our airports are a hell meant to punish everyone.",
+      "link": "https://www.nytimes.com/2026/11/25/opinion/airports-travel-holiday.html",
+      "published": "2026-11-27T01:37:09+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml"
+    },
     {
       "id": "91b7097890b78351",
       "source": "The Wall Street Journal",
@@ -9,16 +59,6 @@
       "summary": "Jefferies raised its earnings forecast for the MSCI India index by about 1%, citing Indian companies’ resilient earnings.",
       "link": "https://www.wsj.com/finance/stocks/nikkei-rises-0-4-led-by-banks-trading-houses-7e23720e?mod=rss_markets_main",
       "published": "2026-11-27T01:21:00+00:00",
-      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
-    },
-    {
-      "id": "f25d70c6284e3cfc",
-      "source": "The Wall Street Journal",
-      "section": "Markets",
-      "title": "Australian Dollar’s Weakness to Extend Into 2027",
-      "summary": "The Australian dollar’s recent weakness looks set to extend into 2027, NAB said.",
-      "link": "https://www.wsj.com/finance/currencies/australia-dollars-weakness-to-extend-into-2027-0354864b?mod=rss_markets_main",
-      "published": "2026-11-27T01:17:00+00:00",
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
     },
     {
@@ -65,10 +105,10 @@
       "id": "f007a00a6007f622",
       "source": "The New York Times",
       "section": "World",
-      "title": "Doug Ford Says He’d Use a Gun to Protect His Family",
+      "title": "Ontario Premier Says He’d Use a Gun to Protect His Family",
       "summary": "Recent home invasions have stirred unease in Toronto. On Thursday, the premier of Ontario said he would fire a gun in self-defense ‘in a heartbeat.’",
       "link": "https://www.nytimes.com/2026/11/26/world/canada/doug-ford-gun-home-invasion-toronto.html",
-      "published": "2026-11-26T21:36:15+00:00",
+      "published": "2026-11-26T21:36:16+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
     },
     {
@@ -1180,6 +1220,16 @@
       "link": "https://www.nytimes.com/2026/11/26/world/middleeast/isis-attack-syria.html",
       "published": "2026-11-26T11:08:41+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+    },
+    {
+      "id": "7bb0c0637c3166f2",
+      "source": "The New York Times",
+      "section": "Opinion",
+      "title": "Johnny Depp’s ‘Ebenezer’ Is Rich Guy Propaganda",
+      "summary": "“Ebenezer” echoes today’s Silicon Valley-centered anti-charity entitlement and reluctance to provide fair pay.",
+      "link": "https://www.nytimes.com/2026/11/26/opinion/johnny-depp-ebenezer-david-ellison.html",
+      "published": "2026-11-26T11:00:08+00:00",
+      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml"
     },
     {
       "id": "a990ad9e2864913f",
@@ -2529,16 +2579,6 @@
       "summary": "The cybersecurity expert Nicole Perlroth explains why the digital world is in chaos.",
       "link": "https://www.nytimes.com/video/opinion/100000011299691/the-everywhere-all-at-once-cybersecurity-crisis.html",
       "published": "2026-11-25T15:05:44+00:00",
-      "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml"
-    },
-    {
-      "id": "8aca47080f436bf2",
-      "source": "The New York Times",
-      "section": "Opinion",
-      "title": "Abandon All Hope, Ye Who Enter Airports",
-      "summary": "Dante’s “Inferno” depicted a hell meant to punish sinners. Our airports are a hell meant to punish everyone.",
-      "link": "https://www.nytimes.com/2026/11/25/opinion/airports-travel-holiday.html",
-      "published": "2026-11-25T15:03:05+00:00",
       "source_url": "https://rss.nytimes.com/services/xml/rss/nyt/Opinion.xml"
     },
     {
