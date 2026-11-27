@@ -30,7 +30,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_SCANS_PARENT_PAGE_ID: ${{ secrets.NOTION_SCANS_PARENT_PAGE_ID }}
+          NOTION_SCANS_DATA_SOURCE_ID: ${{ secrets.NOTION_SCANS_DATA_SOURCE_ID }}
         run: python scripts/sync_notion.py
 
       - name: Commit and push generated state if changed
