@@ -2,7 +2,7 @@ name: Fetch feeds and sync to Notion
 
 on:
   schedule:
-    - cron: "0 0,12 * * *"
+    - cron: "7 0,12 * * *"
   workflow_dispatch:
 
 permissions:
