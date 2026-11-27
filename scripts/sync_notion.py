@@ -9,6 +9,13 @@ repo) so re-runs never re-process the same article. Processing is capped per
 run (MAX_ITEMS_PER_RUN) so a large backlog doesn't fire hundreds of API calls
 at once; the rest is picked up on later runs.
 
+Each item's title is also checked against the titles from the immediately
+preceding scan only (notion_last_scan_titles.json, not full history): an
+exact/near-exact title is dropped from this scan entirely (it's already
+covered), a loosely-similar title is kept but relabeled
+"[SIMILAR] <new title> | <old title>" so the overlap is visible in Notion.
+This is plain text similarity (difflib), not an extra AI call.
+
 Required environment variables:
   ANTHROPIC_API_KEY
   NOTION_TOKEN
@@ -20,8 +27,10 @@ Exit codes:
   1 - missing required env vars, or feeds.json is missing/malformed (fatal)
 """
 
+import difflib
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -30,12 +39,17 @@ from zoneinfo import ZoneInfo
 
 FEEDS_PATH = "feeds.json"
 STATE_PATH = "notion_synced.json"
+LAST_SCAN_TITLES_PATH = "notion_last_scan_titles.json"
 STATE_RETENTION_DAYS = 10
 NOTION_VERSION = "2025-09-03"
 ANTHROPIC_VERSION = "2023-06-01"
 CHICAGO = ZoneInfo("America/Chicago")
 
-MAX_ITEMS_PER_RUN = int(os.environ.get("MAX_ITEMS_PER_RUN", "40"))
+# Title-similarity thresholds (difflib ratio on normalized titles).
+EXACT_TITLE_THRESHOLD = 0.97  # treat near-identical strings as "same", not just ==
+SIMILAR_TITLE_THRESHOLD = 0.6
+
+MAX_ITEMS_PER_RUN = int(os.environ.get("MAX_ITEMS_PER_RUN", "150"))
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-5-5")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
@@ -108,6 +122,51 @@ def prune_state(state, now):
         except (TypeError, ValueError):
             continue
     return kept
+
+
+def load_last_scan_titles(path=LAST_SCAN_TITLES_PATH):
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"WARN: could not read {path}, treating as empty: {e}")
+        return []
+
+
+def save_last_scan_titles(titles, path=LAST_SCAN_TITLES_PATH):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(titles, f, indent=2)
+        f.write("\n")
+
+
+_NORMALIZE_RE = re.compile(r"[^a-z0-9 ]+")
+
+
+def normalize_title(title):
+    lowered = (title or "").lower()
+    stripped = _NORMALIZE_RE.sub(" ", lowered)
+    return " ".join(stripped.split())
+
+
+def classify_against_last_scan(title, last_titles_normalized):
+    """Compare one title against last scan's titles only (not full history).
+    Returns ("exact" | "similar" | "none", matched_original_title_or_None)."""
+    norm = normalize_title(title)
+    best_ratio = 0.0
+    best_original = None
+    for original, other_norm in last_titles_normalized:
+        ratio = difflib.SequenceMatcher(None, norm, other_norm).ratio()
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_original = original
+    if best_ratio >= EXACT_TITLE_THRESHOLD:
+        return "exact", best_original
+    if best_ratio >= SIMILAR_TITLE_THRESHOLD:
+        return "similar", best_original
+    return "none", None
 
 
 def http_json(url, method="GET", headers=None, payload=None, timeout=30):
@@ -260,9 +319,9 @@ def create_scan_database(scan_page_id):
     return sources[0]["id"]
 
 
-def build_notion_properties(item, ai_take):
+def build_notion_properties(item, ai_take, display_title):
     properties = {
-        "Title": {"title": [{"text": {"content": item.get("title") or "(untitled)"}}]},
+        "Title": {"title": [{"text": {"content": display_title or item.get("title") or "(untitled)"}}]},
         "AI Take": {"rich_text": [{"text": {"content": (ai_take or "")[:2000]}}]},
         "Status": {"select": {"name": "New"}},
         "RSS ID": {"rich_text": [{"text": {"content": item["id"]}}]},
@@ -278,10 +337,10 @@ def build_notion_properties(item, ai_take):
     return properties
 
 
-def create_notion_row(data_source_id, item, ai_take):
+def create_notion_row(data_source_id, item, ai_take, display_title):
     payload = {
         "parent": {"type": "data_source_id", "data_source_id": data_source_id},
-        "properties": build_notion_properties(item, ai_take),
+        "properties": build_notion_properties(item, ai_take, display_title),
     }
     http_json(
         "https://api.notion.com/v1/pages",
@@ -308,23 +367,42 @@ def main():
         save_state(state)
         return 0
 
-    processed = []  # list of (item, ai_take) for items we got a take for
+    last_scan_titles = load_last_scan_titles()
+    last_scan_titles_normalized = [(t, normalize_title(t)) for t in last_scan_titles]
+
+    processed = []  # list of (item, ai_take, display_title) for items included in this scan
+    exact_dupes = 0
     for item in to_process:
-        label = f"{item.get('source', '')} / {item.get('title', '')[:60]}"
+        title = item.get("title", "")
+        verdict, matched = classify_against_last_scan(title, last_scan_titles_normalized)
+        if verdict == "exact":
+            # Already covered by the immediately preceding scan - skip the
+            # Claude call and the Notion row entirely, but still mark it
+            # synced so it doesn't keep getting re-checked every run.
+            state[item["id"]] = item.get("published", now.isoformat())
+            exact_dupes += 1
+            continue
+
+        label = f"{item.get('source', '')} / {title[:60]}"
         try:
             ai_take = ask_claude_for_take(item)
         except urllib.error.URLError as e:
             print(f"WARN: Claude summary failed for {label}: {e}")
             continue
-        processed.append((item, ai_take))
+
+        display_title = f"[SIMILAR] {title} | {matched}" if verdict == "similar" else title
+        processed.append((item, ai_take, display_title))
+
+    if exact_dupes:
+        print(f"Skipped {exact_dupes} item(s) with a title matching the previous scan.")
 
     if not processed:
-        print("WARN: no items got a usable Claude take this run; nothing to sync.")
+        print("WARN: nothing left to sync this run (all duplicates or failed takes).")
         save_state(state)
         return 0
 
     try:
-        exec_summary = ask_claude_for_executive_summary(processed)
+        exec_summary = ask_claude_for_executive_summary([(it, take) for it, take, _ in processed])
     except urllib.error.URLError as e:
         print(f"WARN: executive summary failed, continuing without one: {e}")
         exec_summary = ""
@@ -338,17 +416,20 @@ def main():
         fatal(f"could not create scan page/database in Notion: {e}")
 
     synced = 0
-    for item, ai_take in processed:
+    new_last_scan_titles = []
+    for item, ai_take, display_title in processed:
         label = f"{item.get('source', '')} / {item.get('title', '')[:60]}"
         try:
-            create_notion_row(data_source_id, item, ai_take)
+            create_notion_row(data_source_id, item, ai_take, display_title)
         except urllib.error.URLError as e:
             print(f"WARN: Notion row write failed for {label}: {e}")
             continue
         state[item["id"]] = item.get("published", now.isoformat())
+        new_last_scan_titles.append(item.get("title", ""))
         synced += 1
 
     save_state(state)
+    save_last_scan_titles(new_last_scan_titles)
     print(f"Created '{scan_title}' with {synced}/{len(processed)} articles.")
     if remaining:
         print(f"{remaining} more pending item(s) queued for the next run (MAX_ITEMS_PER_RUN={MAX_ITEMS_PER_RUN}).")
