@@ -19,8 +19,13 @@ This is plain text similarity (difflib), not an extra AI call.
 Required environment variables:
   ANTHROPIC_API_KEY
   NOTION_TOKEN
-  NOTION_SCANS_PARENT_PAGE_ID   - the "Various Scans" page, new scan pages
-                                  are created as its children
+  NOTION_SCANS_DATA_SOURCE_ID   - the "Various scans" database (inline in
+                                  the Reading Desk page); each run adds one
+                                  row/page to it. That database's title
+                                  property happens to be named "Name"
+                                  (Notion's own default) - SCANS_TITLE_PROP
+                                  below assumes that; update it if you ever
+                                  rename that column in Notion.
 
 Exit codes:
   0 - success, even if some individual items failed
@@ -53,7 +58,8 @@ MAX_ITEMS_PER_RUN = int(os.environ.get("MAX_ITEMS_PER_RUN", "150"))
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-5-5")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
-NOTION_SCANS_PARENT_PAGE_ID = os.environ.get("NOTION_SCANS_PARENT_PAGE_ID")
+NOTION_SCANS_DATA_SOURCE_ID = os.environ.get("NOTION_SCANS_DATA_SOURCE_ID")
+SCANS_TITLE_PROP = os.environ.get("SCANS_TITLE_PROP", "Name")
 
 SOURCE_COLORS = {
     "The Atlantic": "blue",
@@ -75,7 +81,7 @@ def require_env():
         for name, value in (
             ("ANTHROPIC_API_KEY", ANTHROPIC_API_KEY),
             ("NOTION_TOKEN", NOTION_TOKEN),
-            ("NOTION_SCANS_PARENT_PAGE_ID", NOTION_SCANS_PARENT_PAGE_ID),
+            ("NOTION_SCANS_DATA_SOURCE_ID", NOTION_SCANS_DATA_SOURCE_ID),
         )
         if not value
     ]
@@ -250,9 +256,9 @@ def chicago_scan_title(now_utc):
 
 def create_scan_page(title):
     payload = {
-        "parent": {"type": "page_id", "page_id": NOTION_SCANS_PARENT_PAGE_ID},
+        "parent": {"type": "data_source_id", "data_source_id": NOTION_SCANS_DATA_SOURCE_ID},
         "icon": {"type": "emoji", "emoji": "📰"},
-        "properties": {"title": [{"type": "text", "text": {"content": title}}]},
+        "properties": {SCANS_TITLE_PROP: {"title": [{"type": "text", "text": {"content": title}}]}},
     }
     data = http_json(
         "https://api.notion.com/v1/pages",
