@@ -1,6 +1,16 @@
 {
-  "generatedAt": "2026-11-27T01:23:00.677846+00:00",
+  "generatedAt": "2026-11-27T01:30:58.609335+00:00",
   "items": [
+    {
+      "id": "91b7097890b78351",
+      "source": "The Wall Street Journal",
+      "section": "Markets",
+      "title": "MSCI India Gets Rare Earnings Upgrade",
+      "summary": "Jefferies raised its earnings forecast for the MSCI India index by about 1%, citing Indian companies’ resilient earnings.",
+      "link": "https://www.wsj.com/finance/stocks/nikkei-rises-0-4-led-by-banks-trading-houses-7e23720e?mod=rss_markets_main",
+      "published": "2026-11-27T01:21:00+00:00",
+      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
+    },
     {
       "id": "f25d70c6284e3cfc",
       "source": "The Wall Street Journal",
@@ -39,16 +49,6 @@
       "summary": "Gold prices were little changed. A hawkish Federal Reserve sets a high bar for a durable gold recovery, StoneX said.",
       "link": "https://www.wsj.com/finance/commodities-futures/gold-fortunes-tied-to-stocks-in-near-term-42ce98be?mod=rss_markets_main",
       "published": "2026-11-27T00:25:00+00:00",
-      "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
-    },
-    {
-      "id": "91b7097890b78351",
-      "source": "The Wall Street Journal",
-      "section": "Markets",
-      "title": "Nikkei Rises 0.4%, Led by Banks, Trading Houses",
-      "summary": "Japanese stocks were higher in early trade as recent selloffs in artificial intelligence-related stocks ease.",
-      "link": "https://www.wsj.com/finance/stocks/nikkei-rises-0-4-led-by-banks-trading-houses-7e23720e?mod=rss_markets_main",
-      "published": "2026-11-27T00:18:00+00:00",
       "source_url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"
     },
     {
